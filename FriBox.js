@@ -33,6 +33,18 @@ streznik.listen(process.env.PORT, function() {
     console.log("Strežnik je zagnan");
 });
 
+function izbrisiDatoteko(odgovor, absolutnaPotDoDatoteke) {
+    odgovor.writeHead(200, {'Content-Type': 'text/plain'});
+    fs.unlink(absolutnaPotDoDatoteke, function(napaka) {
+        if(napaka) {
+            posredujNapako500(odgovor);
+        } else {
+            odgovor.write('Datoteka izbrisana');
+            odgovor.end();
+        }
+    });
+}
+
 function posredujOsnovnoStran(odgovor) {
     posredujStaticnoVsebino(odgovor, './public/fribox.html', "");
 }

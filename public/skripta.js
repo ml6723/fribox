@@ -51,7 +51,10 @@ window.addEventListener('load', function() {
 				}
 				
 				if (datoteke.length > 0) {
-					document.querySelector("span[akcija=brisi]").addEventListener("click", brisi);
+					var seznamDatotek = document.querySelectorAll("span[akcija=brisi]");
+					for(var i=0; i<seznamDatotek.length; i++) {
+						seznamDatotek[i].addEventListener("click", brisi);
+					}
 				}
 				ugasniCakanje();
 			}
